@@ -1,0 +1,2 @@
+class ChatNoirClient(object):
+    pass
