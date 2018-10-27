@@ -17,6 +17,15 @@ class TestChatNoirclient(unittest.TestCase):
         self.assertEqual(lechat.name, 'maria')
 
     @mock.patch('socket.socket')
+    def test_disconnect(self, mock_socket):
+        lechat = client.ChatNoirClient()
+        lechat.connect('localhost', 8080,
+                       {'name': 'maria',
+                        'info': 'you gotta see her'})
+        lechat.disconnect()
+        lechat.conn.sockz.close.assert_called_once()
+
+    @mock.patch('socket.socket')
     @mock.patch.object(client.ChatNoirConnection, '_send_message')
     def test_send_public_msg(self, mock_send_msg, mock_socket):
         lechat = client.ChatNoirClient()
