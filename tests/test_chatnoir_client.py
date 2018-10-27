@@ -1,7 +1,7 @@
 import unittest
 import socket
 
-import mock
+from unittest import mock
 import time
 from chatnoirclient import client
 
